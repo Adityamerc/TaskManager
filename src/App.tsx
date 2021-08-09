@@ -3,6 +3,7 @@ import { useDispatch, connect } from "react-redux";
 import TaskBox from "./components/TaskBox";
 import "./App.css";
 import { LoginUser } from "./redux/Login/actions";
+import { Sidebar } from "./components/Sidebar";
 
 function App() {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ function App() {
 
   return (
     <div className="App">
+      <Sidebar />
       <TaskBox />
     </div>
   );
