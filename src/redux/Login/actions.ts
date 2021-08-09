@@ -1,6 +1,7 @@
 import { Action } from "redux";
 import { ThunkDispatch } from "redux-thunk";
 import { Login } from "../../Apis";
+import { GetUsers } from "../GetUsers/actions";
 import { GetTasks } from "../TaskManagement/actions";
 import { getUserId } from "../UserId/actions";
 import { SET_USER } from "./actionTypes";
@@ -34,6 +35,7 @@ export const LoginUser = () => {
 
       dispatch(getUserId(datum.companyId, datum.accessToken));
       dispatch(GetTasks(datum.companyId, datum.accessToken));
+      dispatch(GetUsers(datum.companyId, datum.accessToken));
       dispatch(UpdateState(datum));
     } catch (error) {}
   };

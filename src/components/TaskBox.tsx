@@ -16,6 +16,7 @@ import { GetSingleTask, TaskType } from "../redux/GetTask/actions";
 import { content } from "../content";
 import { TimeToSeconds } from "../utils/TimeToSeconds";
 import { SecondsToTime } from "../utils/SecondsToTime";
+import { UsersType } from "../redux/GetUsers/actions";
 
 interface TaskItemProps {
   getTask: (id: string) => void;
@@ -91,6 +92,10 @@ const TaskBox: React.FC<Props> = () => {
 
   const allTasks = useSelector(
     (state: { allTasksReducer: TasksType }) => state.allTasksReducer
+  );
+
+  const allUsers = useSelector(
+    (state: { allUsersReducer: UsersType }) => state.allUsersReducer
   );
 
   const loginDetails = useSelector(
@@ -218,11 +223,16 @@ const TaskBox: React.FC<Props> = () => {
             <label className={styles.fieldLabel} htmlFor="assign_user">
               {content.form.field4}
             </label>
-            <input
+            <select
               {...register("assigned_user", { required: true })}
               id="assign_user"
               className={styles.inputField}
-            />
+            >
+              <option> </option>
+              {(allUsers?.data || []).map((user, ind) => (
+                <option key={user?.user_id || ind}>{user?.name}</option>
+              ))}
+            </select>
             <div
               className={`${styles.actionButtons} ${isEdit && styles.spaced}`}
             >

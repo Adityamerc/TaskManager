@@ -38,6 +38,18 @@ export const GetAllTasks = async (company_id: string, access_token: string) => {
   } catch (e) {}
 };
 
+export const GetAllUsers = async (company_id: string, access_token: string) => {
+  try {
+    const res = await axios({
+      method: "get",
+      headers: { ...PostHeaders, authorization: `Bearer ${access_token}` },
+      url: `${BaseUrl}team?company_id=company_0336d06ff0ec4b3b9306ddc288482663&product=outreach`,
+      data: {},
+    });
+    return res.data;
+  } catch (e) {}
+};
+
 type CreateType = {
   assigned_user: string;
   task_date: string;
